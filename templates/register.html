@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-md-6">
+
+        <div class="card shadow">
+
+            <div class="card-header text-white text-center"
+                 style="background-color:#5DADE2;">
+                <h3>Register</h3>
+            </div>
+
+            <div class="card-body">
+
+                <form method="POST">
+
+                    <div class="mb-3">
+                        <label class="form-label">Name</label>
+                        <input
+                            type="text"
+                            name="name"
+                            class="form-control"
+                            required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input
+                            type="email"
+                            name="email"
+                            class="form-control"
+                            required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input
+                            type="password"
+                            name="password"
+                            class="form-control"
+                            required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Role</label>
+
+                        <select
+                            name="role"
+                            class="form-select"
+                            required>
+
+                            <option value="">Select Role</option>
+                            <option value="user">User</option>
+                            <option value="staff">Staff</option>
+
+                        </select>
+
+                    </div>
+
+                    <button
+                        class="btn w-100 text-white"
+                        style="background-color:#5DADE2;">
+
+                        Register
+
+                    </button>
+
+                </form>
+
+                <hr>
+
+                <p class="text-center">
+                    Already have an account?
+
+                    <a href="{{ url_for('login') }}">
+                        Login
+                    </a>
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

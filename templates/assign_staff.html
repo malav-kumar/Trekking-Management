@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}
+Assign Staff
+{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-md-6">
+
+        <div class="card shadow">
+
+            <div class="card-header text-white"
+                 style="background-color:#5DADE2;">
+
+                <h3 class="mb-0 text-center">Assign Staff</h3>
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="alert alert-info">
+
+                    <strong>Trek:</strong> {{ trek.trek_name }}
+
+                </div>
+
+                <form method="POST">
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Select Staff Member
+                        </label>
+
+                        <select name="staff_id"
+                                class="form-select"
+                                required>
+
+                            <option value="">
+                                -- Select Staff --
+                            </option>
+
+                            {% for staff in staffs %}
+
+                            <option value="{{ staff.id }}">
+
+                                {{ staff.name }}
+
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+                    <div class="d-grid gap-2">
+
+                        <button type="submit"
+                                class="btn text-white"
+                                style="background-color:#5DADE2;">
+
+                            Assign Staff
+
+                        </button>
+
+                        <a href="{{ url_for('view_treks') }}"
+                           class="btn btn-secondary">
+
+                            Back to Treks
+
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

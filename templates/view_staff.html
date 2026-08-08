@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %}
+View Staff
+{% endblock %}
+
+{% block content %}
+
+<div class="card shadow">
+
+    <div class="card-header text-white"
+         style="background-color:#5DADE2;">
+
+        <h3 class="mb-0">All Staff Members</h3>
+
+    </div>
+
+    <div class="card-body">
+
+        <table class="table table-bordered table-hover table-striped">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Approved</th>
+                    <th>Blacklisted</th>
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for staff in staffs %}
+
+                <tr>
+
+                    <td>{{ staff.id }}</td>
+                    <td>{{ staff.name }}</td>
+                    <td>{{ staff.email }}</td>
+
+                    <td>
+
+                        {% if staff.approved %}
+                            <span class="badge bg-success">Approved</span>
+                        {% else %}
+                            <span class="badge bg-warning text-dark">Pending</span>
+                        {% endif %}
+
+                    </td>
+
+                    <td>
+
+                        {% if staff.blacklisted %}
+                            <span class="badge bg-danger">Yes</span>
+                        {% else %}
+                            <span class="badge bg-success">No</span>
+                        {% endif %}
+
+                    </td>
+
+                    <td>
+
+                        {% if not staff.approved %}
+
+                            <a href="{{ url_for('approve_staff', id=staff.id) }}"
+                               class="btn btn-success btn-sm">
+                                Approve
+                            </a>
+
+                        {% else %}
+
+                            <button class="btn btn-secondary btn-sm" disabled>
+                                Approved
+                            </button>
+
+                        {% endif %}
+
+                        {% if not staff.blacklisted %}
+
+                            <a href="{{ url_for('blacklist_staff', id=staff.id) }}"
+                               class="btn btn-danger btn-sm"
+                               onclick="return confirm('Blacklist this staff member?')">
+                                Blacklist
+                            </a>
+
+                        {% else %}
+
+                            <button class="btn btn-secondary btn-sm" disabled>
+                                Blacklisted
+                            </button>
+
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        <a href="{{ url_for('admin_dashboard') }}"
+           class="btn btn-secondary">
+            Back to Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

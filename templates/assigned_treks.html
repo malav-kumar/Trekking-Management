@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block title %}
+Assigned Treks
+{% endblock %}
+
+{% block content %}
+
+<div class="card shadow">
+
+    <div class="card-header text-white"
+         style="background-color:#5DADE2;">
+
+        <h3 class="mb-0">Assigned Treks</h3>
+
+    </div>
+
+    <div class="card-body">
+
+        <table class="table table-bordered table-hover table-striped align-middle">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Trek Name</th>
+                    <th>Location</th>
+                    <th>Difficulty</th>
+                    <th>Available Slots</th>
+                    <th>Status</th>
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for trek in treks %}
+
+                <tr>
+
+                    <td>{{ trek.id }}</td>
+
+                    <td>{{ trek.trek_name }}</td>
+
+                    <td>{{ trek.location }}</td>
+
+                    <td>
+
+                        {% if trek.difficulty == "Easy" %}
+                            <span class="badge bg-success">Easy</span>
+
+                        {% elif trek.difficulty == "Moderate" %}
+                            <span class="badge bg-warning text-dark">Moderate</span>
+
+                        {% else %}
+                            <span class="badge bg-danger">Hard</span>
+
+                        {% endif %}
+
+                    </td>
+
+                    <td>{{ trek.available_slots }}</td>
+
+                    <td>
+
+                        {% if trek.status == "Open" %}
+                            <span class="badge bg-success">Open</span>
+
+                        {% elif trek.status == "Closed" %}
+                            <span class="badge bg-danger">Closed</span>
+
+                        {% elif trek.status == "Completed" %}
+                            <span class="badge bg-secondary">Completed</span>
+
+                        {% else %}
+                            <span class="badge bg-primary">{{ trek.status }}</span>
+
+                        {% endif %}
+
+                    </td>
+
+                    <td>
+
+                        <div class="d-grid gap-2">
+
+                            <a href="{{ url_for('update_slots', id=trek.id) }}"
+                               class="btn btn-warning btn-sm">
+
+                                Update Slots
+
+                            </a>
+
+                            <a href="{{ url_for('update_status', id=trek.id) }}"
+                               class="btn btn-info btn-sm text-white">
+
+                                Update Status
+
+                            </a>
+
+                            <a href="{{ url_for('view_participants', id=trek.id) }}"
+                               class="btn btn-success btn-sm">
+
+                                View Participants
+
+                            </a>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        <a href="{{ url_for('staff_dashboard') }}"
+           class="btn btn-secondary">
+
+            Back to Dashboard
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

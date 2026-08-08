@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}
+Update Trek Status
+{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-md-6">
+
+        <div class="card shadow">
+
+            <div class="card-header text-white"
+                 style="background-color:#5DADE2;">
+
+                <h3 class="mb-0 text-center">
+                    Update Trek Status
+                </h3>
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="alert alert-info">
+
+                    <strong>Trek:</strong>
+                    {{ trek.trek_name }}
+
+                </div>
+
+                <form method="POST">
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Trek Status
+                        </label>
+
+                        <select
+                            name="status"
+                            class="form-select"
+                            required>
+
+                            <option value="Pending"
+                                {% if trek.status=="Pending" %}selected{% endif %}>
+                                Pending
+                            </option>
+
+                            <option value="Open"
+                                {% if trek.status=="Open" %}selected{% endif %}>
+                                Open
+                            </option>
+
+                            <option value="Closed"
+                                {% if trek.status=="Closed" %}selected{% endif %}>
+                                Closed
+                            </option>
+
+                            <option value="Completed"
+                                {% if trek.status=="Completed" %}selected{% endif %}>
+                                Completed
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="d-grid gap-2">
+
+                        <button
+                            type="submit"
+                            class="btn text-white"
+                            style="background-color:#5DADE2;">
+
+                            Update Status
+
+                        </button>
+
+                        <a href="{{ url_for('assigned_treks') }}"
+                           class="btn btn-secondary">
+
+                            Back to Assigned Treks
+
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}
+Staff Dashboard
+{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">Staff Dashboard</h2>
+
+<div class="row justify-content-center">
+
+    <div class="col-md-6">
+
+        <div class="card shadow">
+
+            <div class="card-header text-white"
+                 style="background-color:#5DADE2;">
+
+                <h3 class="mb-0 text-center">
+                    Staff Panel
+                </h3>
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="d-grid gap-3">
+
+                    <a href="{{ url_for('assigned_treks') }}"
+                       class="btn btn-primary btn-lg">
+
+                        View Assigned Treks
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}
+View Bookings
+{% endblock %}
+
+{% block content %}
+
+<div class="card shadow">
+
+    <div class="card-header text-white"
+         style="background-color:#5DADE2;">
+
+        <h3 class="mb-0">All Bookings</h3>
+
+    </div>
+
+    <div class="card-body">
+
+        <table class="table table-bordered table-hover table-striped">
+
+            <thead>
+
+                <tr>
+
+                    <th>Booking ID</th>
+                    <th>User ID</th>
+                    <th>Trek ID</th>
+                    <th>Booking Date</th>
+                    <th>Status</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for booking in bookings %}
+
+                <tr>
+
+                    <td>{{ booking.id }}</td>
+
+                    <td>{{ booking.user_id }}</td>
+
+                    <td>{{ booking.trek_id }}</td>
+
+                    <td>{{ booking.booking_date }}</td>
+
+                    <td>
+
+                        {% if booking.status == "Booked" %}
+                            <span class="badge bg-primary">
+                                {{ booking.status }}
+                            </span>
+
+                        {% elif booking.status == "Completed" %}
+                            <span class="badge bg-success">
+                                {{ booking.status }}
+                            </span>
+
+                        {% elif booking.status == "Cancelled" %}
+                            <span class="badge bg-danger">
+                                {{ booking.status }}
+                            </span>
+
+                        {% else %}
+                            <span class="badge bg-secondary">
+                                {{ booking.status }}
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        <a href="{{ url_for('admin_dashboard') }}"
+           class="btn btn-secondary">
+            Back to Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

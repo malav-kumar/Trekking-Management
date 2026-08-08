@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}
+Update Available Slots
+{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-md-6">
+
+        <div class="card shadow">
+
+            <div class="card-header text-white"
+                 style="background-color:#5DADE2;">
+
+                <h3 class="mb-0 text-center">
+                    Update Available Slots
+                </h3>
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="alert alert-info">
+
+                    <strong>Trek:</strong>
+                    {{ trek.trek_name }}
+
+                </div>
+
+                <form method="POST">
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Available Slots
+                        </label>
+
+                        <input
+                            type="number"
+                            name="available_slots"
+                            class="form-control"
+                            value="{{ trek.available_slots }}"
+                            min="0"
+                            required>
+
+                    </div>
+
+                    <div class="d-grid gap-2">
+
+                        <button
+                            type="submit"
+                            class="btn text-white"
+                            style="background-color:#5DADE2;">
+
+                            Update Slots
+
+                        </button>
+
+                        <a href="{{ url_for('assigned_treks') }}"
+                           class="btn btn-secondary">
+
+                            Back to Assigned Treks
+
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}
+View Users
+{% endblock %}
+
+{% block content %}
+
+<div class="card shadow">
+
+    <div class="card-header text-white"
+         style="background-color:#5DADE2;">
+
+        <h3 class="mb-0">All Users</h3>
+
+    </div>
+
+    <div class="card-body">
+
+        <table class="table table-bordered table-hover table-striped">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Approved</th>
+                    <th>Blacklisted</th>
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for user in users %}
+
+                <tr>
+
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.email }}</td>
+
+                    <td>
+
+                        {% if user.approved %}
+                            <span class="badge bg-success">Yes</span>
+                        {% else %}
+                            <span class="badge bg-warning text-dark">No</span>
+                        {% endif %}
+
+                    </td>
+
+                    <td>
+
+                        {% if user.blacklisted %}
+                            <span class="badge bg-danger">Yes</span>
+                        {% else %}
+                            <span class="badge bg-success">No</span>
+                        {% endif %}
+
+                    </td>
+
+                    <td>
+
+                        {% if not user.blacklisted %}
+
+                        <a href="{{ url_for('blacklist_user', id=user.id) }}"
+                           class="btn btn-danger btn-sm"
+                           onclick="return confirm('Blacklist this user?')">
+
+                            Blacklist
+
+                        </a>
+
+                        {% else %}
+
+                        <button class="btn btn-secondary btn-sm" disabled>
+                            Blacklisted
+                        </button>
+
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        <a href="{{ url_for('admin_dashboard') }}"
+           class="btn btn-secondary">
+            Back to Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}
