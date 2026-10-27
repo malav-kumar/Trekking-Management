@@ -1,16 +1,18 @@
-# This class stores all the configuration settings
+
+import os
+
 class Config:
+    # Read the secret key from Render's environment variables.
+    SECRET_KEY = os.environ.get("SECRET_KEY", "local-development-key-change-me")
 
-    # Secret key used by Flask to secure session data
-    # (for example, when a user logs in).
-    SECRET_KEY = "trek123"
+    # Use a persistent disk path if configured on Render.
+    # Otherwise, use the default SQLite location for local development.
+    DATABASE_PATH = os.environ.get("DATABASE_PATH")
 
-    # Database location.
-    # We are using SQLite, and the database file
-    # will be named 'trekking.db'.
-    SQLALCHEMY_DATABASE_URI = "sqlite:///trekking.db"
+    if DATABASE_PATH:
+        os.makedirs(os.path.dirname(DATABASE_PATH), exist_ok=True)
+        SQLALCHEMY_DATABASE_URI = "sqlite:///" + DATABASE_PATH
+    else:
+        SQLALCHEMY_DATABASE_URI = "sqlite:///trekking.db"
 
-    # Disable modification tracking because
-    # our project doesn't need it.
-    # This also removes unnecessary warning messages.
     SQLALCHEMY_TRACK_MODIFICATIONS = False
