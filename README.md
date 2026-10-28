@@ -1,7 +1,5 @@
 Trekking Management System
 
-A web-based Trekking Management System developed as a ModernApplication Development - I (MAD1) project.
-
 The application provides separate functionality for Admin, Trek Staff,and Users (Trekkers). Administrators can manage users, staff, treksand bookings; staff can manage assigned treks; and users can browse andbook available treks.
 
 Features
@@ -185,3 +183,4 @@ Author
 Malav Kumar
 
 GitHub: https://github.com/malav-kumar/25F3002905
+video :
